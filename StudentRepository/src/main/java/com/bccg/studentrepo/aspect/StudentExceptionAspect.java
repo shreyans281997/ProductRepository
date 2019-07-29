@@ -12,5 +12,4 @@ public class StudentExceptionAspect {
 		CustomResponse response=new CustomResponse(e.getMessage(), HttpStatus.EXPECTATION_FAILED.value());
 		return new ResponseEntity<>(response,HttpStatus.EXPECTATION_FAILED);
 	}
-
 }
