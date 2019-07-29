@@ -9,6 +9,7 @@ public class Student {
 	private String firstName;
 	private String lastName;
 	private String emailId;
+	public Student() {}
 	public Student(Integer studentId, String firstName, String lastName, String emailId) {
 		super();
 		this.studentId = studentId;
