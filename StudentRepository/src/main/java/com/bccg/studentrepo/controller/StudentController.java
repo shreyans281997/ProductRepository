@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.bccg.studentrepo.beans.Student;
+import com.bccg.studentrepo.exceptions.StudentNotFoundException;
 import com.bccg.studentrepo.services.StudentServices;
 @RestController
 @RequestMapping("/student/")
@@ -24,11 +25,11 @@ public class StudentController {
 		return new ResponseEntity<>(studentServices.acceptStudentDetails(student),HttpStatus.OK);
 	}
 	@GetMapping("/studentDetails")
-	public ResponseEntity<Student> getStudentDetails(@RequestParam Integer studentId){
+	public ResponseEntity<Student> getStudentDetails(@RequestParam Integer studentId) throws StudentNotFoundException{
 		return new ResponseEntity<>(studentServices.getStudentDetails(studentId),HttpStatus.OK);
 	}
 	@GetMapping(value= {"/info/{id}"})
-	public ResponseEntity<Student> getProductDetailsPathParam(@PathVariable(value="id") Integer studentId){
+	public ResponseEntity<Student> getProductDetailsPathParam(@PathVariable(value="id") Integer studentId) throws StudentNotFoundException{
 		return new ResponseEntity<>(studentServices.getStudentDetails(studentId),HttpStatus.OK);
 	}   
 	@PutMapping("/update")
@@ -40,7 +41,7 @@ public class StudentController {
 		return new ResponseEntity<List<Student>>(studentServices.showAllStudent(), HttpStatus.OK);
 	}
 	@DeleteMapping("/delete")
-	public ResponseEntity<Boolean> deleteStudent(@RequestParam Integer studentId){
+	public ResponseEntity<Boolean> deleteStudent(@RequestParam Integer studentId) throws StudentNotFoundException{
 		return new ResponseEntity<Boolean>(studentServices.deleteStudentDetails(studentId), HttpStatus.OK);
 	}
 

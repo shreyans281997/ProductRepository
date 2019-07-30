@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bccg.studentrepo.beans.Student;
 import com.bccg.studentrepo.dao.StudentDao;
+import com.bccg.studentrepo.exceptions.StudentNotFoundException;
 @Service
 public class StudentServices implements IStudentServices {
 	@Autowired
@@ -14,11 +15,12 @@ public class StudentServices implements IStudentServices {
 		return "Student details saved successfully";
 	}
 	@Override
-	public Student getStudentDetails(Integer studentId) {
-		return daoServices.findById(studentId).orElseThrow(null);
+	public Student getStudentDetails(Integer studentId) throws StudentNotFoundException {
+		return daoServices.findById(studentId).orElseThrow(()->new StudentNotFoundException("Student Not found"));
 	}
 	@Override
-	public boolean deleteStudentDetails(Integer studentId) {
+	public boolean deleteStudentDetails(Integer studentId) throws StudentNotFoundException {
+		getStudentDetails(studentId);
 		daoServices.deleteById(studentId);
 		return true;
 	}
