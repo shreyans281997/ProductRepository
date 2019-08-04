@@ -1,7 +1,8 @@
 package com.bccg.studentrepo.beans;
-import javax.annotation.sql.DataSourceDefinition;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 @Entity
 public class Student {
 	@Id
@@ -9,7 +10,10 @@ public class Student {
 	private String firstName;
 	private String lastName;
 	private String emailId;
-	public Student() {}
+
+	public Student() {
+	}
+
 	public Student(Integer studentId, String firstName, String lastName, String emailId) {
 		super();
 		this.studentId = studentId;
@@ -17,30 +21,39 @@ public class Student {
 		this.lastName = lastName;
 		this.emailId = emailId;
 	}
+
 	public Integer getStudentId() {
 		return studentId;
 	}
+
 	public void setStudentId(Integer studentId) {
 		this.studentId = studentId;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public String getEmailId() {
 		return emailId;
 	}
+
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -51,6 +64,7 @@ public class Student {
 		result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -82,11 +96,10 @@ public class Student {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId="
 				+ emailId + "]";
 	}
-	
 }
-
